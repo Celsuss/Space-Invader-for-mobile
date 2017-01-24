@@ -5,17 +5,21 @@ using UnityEngine;
 public class KillObject : MonoBehaviour {
 
 	[SerializeField] GameObject m_ExplosionPrefab;
+	[SerializeField] int m_ScoreValue = 0;
 
 	void OnCollisionEnter(Collision collision) {
-		if(m_ExplosionPrefab)
-			Instantiate(m_ExplosionPrefab, transform.position, transform.rotation);
-		Destroy(gameObject);
+		DestroyObject();
 	}
 
 	void OnTriggerEnter(Collider collider){
-		if(m_ExplosionPrefab){
+		DestroyObject();
+	}
+
+	void DestroyObject(){
+		if(m_ExplosionPrefab)
 			Instantiate(m_ExplosionPrefab, transform.position, transform.rotation);
-		}
+		if(m_ScoreValue != 0)
+			GameManager.Instance.AddScore(m_ScoreValue);
 		Destroy(gameObject);
 	}
 }

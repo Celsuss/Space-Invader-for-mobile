@@ -83,11 +83,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DestroyFinieshedParticleSystem.cs" />
     <Compile Include="Assets\Scripts\DroneMovement.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\KillObject.cs" />
     <Compile Include="Assets\Scripts\LaserMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
-    <Compile Include="Assets\Scripts\SpawnEnemy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
