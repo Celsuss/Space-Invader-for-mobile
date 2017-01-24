@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour {
 		m_Score = 0;
 		StartCoroutine(SpawnEnemy());
 		UpdateScore();
-		Debug.Log("Start");
 	}
 	
 	// Update is called once per frame
@@ -55,7 +54,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void AddScore( int scoreValue ){
-		Debug.Log("Added Score");
 		m_Score += scoreValue;
 		UpdateScore();
 	}
