@@ -5,30 +5,37 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	[SerializeField] float m_Speed = 0.25f;
+	[SerializeField] float m_Tilt = 0;
+	Rigidbody m_Rigidbody;
 
 	// Use this for initialization
 	void Start () {
-		
+		m_Rigidbody = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		foreach(Touch touch in Input.touches){
 			if(touch.phase == TouchPhase.Moved){
-				transform.Translate(touch.deltaPosition.x * m_Speed * Time.deltaTime, 
-									0,
-									touch.deltaPosition.y * m_Speed * Time.deltaTime);
+				m_Rigidbody.velocity = new Vector3(touch.deltaPosition.x * m_Speed * 2 * Time.deltaTime,
+													0,
+													touch.deltaPosition.y * m_Speed * 2 * Time.deltaTime);
 			}
 		}
 
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
 		if(horizontal != 0 || vertical != 0){
-			transform.Translate(horizontal * m_Speed * 2 * Time.deltaTime, 
-								0,
-								vertical * m_Speed * 2 * Time.deltaTime);
+			m_Rigidbody.velocity = new Vector3(horizontal * m_Speed * 2 * Time.deltaTime,
+												0,
+												vertical * m_Speed * 2 * Time.deltaTime);
 		}
+		RotateShip();
 		ClampPosition();
+	}
+
+	void RotateShip(){
+		m_Rigidbody.rotation = Quaternion.Euler(0, 0, m_Rigidbody.velocity.x * -m_Tilt);
 	}
 
 	// Clamp the position so the object can't move outside the screen.
