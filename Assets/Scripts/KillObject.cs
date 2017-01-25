@@ -20,6 +20,8 @@ public class KillObject : MonoBehaviour {
 			Instantiate(m_ExplosionPrefab, transform.position, transform.rotation);
 		if(m_ScoreValue != 0)
 			GameManager.Instance.AddScore(m_ScoreValue);
+		if(gameObject.tag == "Player")
+			GameManager.Instance.GameOver();
 		Destroy(gameObject);
 	}
 }

@@ -20,6 +20,14 @@ public class PlayerMovement : MonoBehaviour {
 									touch.deltaPosition.y * m_Speed * Time.deltaTime);
 			}
 		}
+
+		float horizontal = Input.GetAxis("Horizontal");
+		float vertical = Input.GetAxis("Vertical");
+		if(horizontal != 0 || vertical != 0){
+			transform.Translate(horizontal * m_Speed * 2 * Time.deltaTime, 
+								0,
+								vertical * m_Speed * 2 * Time.deltaTime);
+		}
 		ClampPosition();
 	}
 

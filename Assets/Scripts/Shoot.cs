@@ -17,7 +17,7 @@ public class Shoot : MonoBehaviour {
 		if(Time.time > m_NextFire){
 			m_NextFire = Time.time + m_FireRate;
 			GameObject obj = Instantiate(m_LaserPrefab, transform.position, transform.rotation);
-			obj.tag = transform.tag;
+			//obj.tag = transform.tag;
 			obj.layer = gameObject.layer;
 		}
 	}
