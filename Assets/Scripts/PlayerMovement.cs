@@ -15,13 +15,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*foreach(Touch touch in Input.touches){
+		foreach(Touch touch in Input.touches){
 			if(touch.phase == TouchPhase.Moved){
 				m_Rigidbody.velocity = new Vector3(touch.deltaPosition.x * m_Speed * 2 * Time.deltaTime,
 													0,
 													touch.deltaPosition.y * m_Speed * 2 * Time.deltaTime);
 			}
-		}*/
+		}
 
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
