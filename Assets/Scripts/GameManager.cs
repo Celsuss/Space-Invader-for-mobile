@@ -81,13 +81,14 @@ public class GameManager : MonoBehaviour {
 
 
 	IEnumerator SpawnEnemy () {
+		Random.InitState(50);
 		while(!m_GameOver){
 			for(int i = 0; i < m_WaveCount; i++){
 				Vector3 pos = new Vector3(Random.Range(0f, 1f), 1f, 0);
 				pos = Camera.main.ViewportToWorldPoint(pos);
 				pos.y = 0;
 
-				int rand = Random.Range(0, m_EnemyPrefabs.Length - 1);
+				int rand = Random.Range(0, m_EnemyPrefabs.Length);
 				Instantiate(m_EnemyPrefabs[rand], pos, m_EnemyPrefabs[rand].transform.rotation);
 
 				if(IsGameOver()) break;
