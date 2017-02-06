@@ -11,7 +11,7 @@ public class LaserMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.forward * m_Speed * Time.deltaTime);
+		transform.Translate(Vector3.up * m_Speed * Time.deltaTime);
 		KillOffScreen();
 	}
 

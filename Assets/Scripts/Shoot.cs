@@ -16,8 +16,8 @@ public class Shoot : MonoBehaviour {
 	void Update () {
 		if(Time.time > m_NextFire){
 			m_NextFire = Time.time + m_FireRate;
-			GameObject obj = Instantiate(m_LaserPrefab, transform.position, transform.rotation);
-			//obj.tag = transform.tag;
+			Quaternion rot = Quaternion.Euler(m_LaserPrefab.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_LaserPrefab.transform.rotation.eulerAngles.z);
+			GameObject obj = Instantiate(m_LaserPrefab, transform.position, rot);
 			obj.layer = gameObject.layer;
 		}
 	}

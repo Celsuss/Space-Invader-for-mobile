@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	[SerializeField] float m_Speed = 0.25f;
-	[SerializeField] float m_Tilt = 0;
+	[SerializeField] float m_TiltSpeed = 0;
+	[SerializeField] float m_MaxTilt = 75;
 	Rigidbody m_Rigidbody;
 
 	// Use this for initialization
@@ -35,7 +36,21 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void RotateShip(){
-		m_Rigidbody.rotation = Quaternion.Euler(0, 0, m_Rigidbody.velocity.x * -m_Tilt);
+		Quaternion deltaR = Quaternion.Euler(0, 0, m_Rigidbody.velocity.x * -m_TiltSpeed * Time.deltaTime);
+		if(Input.GetAxis("Horizontal") != 0){
+			m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaR);
+		}
+		else{
+			Quaternion targetRot = Quaternion.identity;
+			deltaR = Quaternion.RotateTowards(transform.rotation, targetRot, m_TiltSpeed * 5 * Time.deltaTime);
+			m_Rigidbody.MoveRotation(deltaR);
+		}
+
+		Vector3 euler = m_Rigidbody.rotation.eulerAngles;
+		if(euler.z > 180)
+			euler.z -= 360;
+		transform.rotation = Quaternion.Euler(euler.x, euler.y, Mathf.Clamp (euler.z, -m_MaxTilt, m_MaxTilt));
+
 	}
 
 	// Clamp the position so the object can't move outside the screen.
