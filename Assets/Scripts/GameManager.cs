@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour {
 				if(IsGameOver()) break;
 				yield return new WaitForSecondsRealtime (m_SpawnWaitTime);
 			}
+
 			m_WaveCount++;
 			if(IsGameOver()) break;
 			yield return new WaitForSecondsRealtime (m_WaveWaitTime);
